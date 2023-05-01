@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A43ABF7229FFBCD000F95A52 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43ABF7129FFBCD000F95A52 /* main.swift */; };
+		A43ABF7B29FFF0DE00F95A52 /* SKServerConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43ABF7A29FFF0DE00F95A52 /* SKServerConnection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		A43ABF6E29FFBCD000F95A52 /* skncat */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = skncat; sourceTree = BUILT_PRODUCTS_DIR; };
 		A43ABF7129FFBCD000F95A52 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A43ABF7A29FFF0DE00F95A52 /* SKServerConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKServerConnection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				A43ABF7129FFBCD000F95A52 /* main.swift */,
+				A43ABF7A29FFF0DE00F95A52 /* SKServerConnection.swift */,
 			);
 			path = skncat;
 			sourceTree = "<group>";
@@ -120,6 +123,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A43ABF7B29FFF0DE00F95A52 /* SKServerConnection.swift in Sources */,
 				A43ABF7229FFBCD000F95A52 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
