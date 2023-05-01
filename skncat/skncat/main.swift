@@ -20,7 +20,7 @@ struct Console {
     }
 
 
-    // MARK: - Functions
+    // MARK: - Methods
 
     func run() {
         guard let host = parseArguments()
@@ -31,7 +31,10 @@ struct Console {
 
         switch host {
         case .server(let port):
-            print("Starting as server on port: \(port)")
+            if (try? SKServer(port: port)?.start()) == nil {
+                print("Error: failed to start server")
+                return
+            }
         case .client(let server):
             print("Starting as client, connecting to server \(server.name) port: \(server.port)")
         }
