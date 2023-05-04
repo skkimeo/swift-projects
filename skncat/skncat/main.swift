@@ -36,7 +36,14 @@ struct Console {
                 return
             }
         case .client(let server):
-            print("Starting as client, connecting to server \(server.name) port: \(server.port)")
+            guard let client = SKClient(server: server.name, port: server.port)
+            else {
+                print("Error: failed to start client")
+                return
+            }
+
+            client.start()
+            receiveInput(for: client)
         }
 
         RunLoop.current.run()
@@ -52,6 +59,29 @@ struct Console {
 
         let isServer = arguments[Metric.server] == StringLiteral.serverFlag
         return isServer ? Host.server(port: port) : Host.client(server: (port, arguments[Metric.server]))
+    }
+
+    private func receiveInput(for client: SKClient) {
+        while true {
+            guard var command = readLine(strippingNewline: true)
+            else {
+                print("Missing client input")
+                continue
+            }
+
+            switch command {
+            case "CRLF":
+                command = "\r\n"
+            case "RETURN":
+                command = "\n"
+            case "exit":
+                client.stop()
+            default:
+                break
+            }
+
+            client.send(data: command.data(using: .utf8)!)
+        }
     }
 }
 
