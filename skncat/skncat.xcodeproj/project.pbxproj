@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A42132AD2A038CD80007EC0D /* SKClientConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42132AC2A038CD80007EC0D /* SKClientConnection.swift */; };
+		A42132AF2A0390000007EC0D /* SKClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42132AE2A0390000007EC0D /* SKClient.swift */; };
 		A43ABF7229FFBCD000F95A52 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43ABF7129FFBCD000F95A52 /* main.swift */; };
 		A43ABF7929FFDE3000F95A52 /* SKServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43ABF7829FFDE3000F95A52 /* SKServer.swift */; };
 		A43ABF7B29FFF0DE00F95A52 /* SKServerConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43ABF7A29FFF0DE00F95A52 /* SKServerConnection.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		A42132AC2A038CD80007EC0D /* SKClientConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKClientConnection.swift; sourceTree = "<group>"; };
+		A42132AE2A0390000007EC0D /* SKClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKClient.swift; sourceTree = "<group>"; };
 		A43ABF6E29FFBCD000F95A52 /* skncat */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = skncat; sourceTree = BUILT_PRODUCTS_DIR; };
 		A43ABF7129FFBCD000F95A52 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		A43ABF7829FFDE3000F95A52 /* SKServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKServer.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				A43ABF7129FFBCD000F95A52 /* main.swift */,
 				A43ABF7A29FFF0DE00F95A52 /* SKServerConnection.swift */,
 				A42132AC2A038CD80007EC0D /* SKClientConnection.swift */,
+				A42132AE2A0390000007EC0D /* SKClient.swift */,
 				A43ABF7829FFDE3000F95A52 /* SKServer.swift */,
 			);
 			path = skncat;
@@ -132,6 +135,7 @@
 				A43ABF7B29FFF0DE00F95A52 /* SKServerConnection.swift in Sources */,
 				A42132AD2A038CD80007EC0D /* SKClientConnection.swift in Sources */,
 				A43ABF7929FFDE3000F95A52 /* SKServer.swift in Sources */,
+				A42132AF2A0390000007EC0D /* SKClient.swift in Sources */,
 				A43ABF7229FFBCD000F95A52 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

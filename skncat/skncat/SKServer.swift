@@ -43,13 +43,13 @@ final class SKServer {
     func start() throws {
         print("Server starting...")
         configureListener()
+        // TODO: why main..?
+        listener.start(queue: .main)
     }
 
     private func configureListener() {
         listener.newConnectionHandler = configureConnection(_:)
         listener.stateUpdateHandler = stateDidChange(to:)
-        // TODO: why main..?
-        listener.start(queue: .main)
     }
 
     /// adds, configures, and starts a new (given) connection
