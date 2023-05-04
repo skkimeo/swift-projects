@@ -1,23 +1,20 @@
 //
-//  SKServerConnection.swift
+//  SKClientConnection.swift
 //  skncat
 //
-//  Created by sun on 2023/05/01.
+//  Created by sun on 2023/05/04.
 //
 
 import Foundation
 import Network
 
-final class SKServerConnection {
-    typealias ID = Int
+// TODO: make protocol?
+final class SKClientConnection {
 
     // MARK: - Properties
 
-    /// counter for all connection IDs
-    private static var nextID: ID = .zero
-
     let connection: NWConnection
-    let id: ID
+    let queue = DispatchQueue(label: "Client")
     var callBackStopHandler: ((Error?) -> Void)? = nil
 
     /// TCP maximum package size
@@ -28,8 +25,6 @@ final class SKServerConnection {
 
     init(_ connection: NWConnection) {
         self.connection = connection
-        id = SKServerConnection.nextID
-        SKServerConnection.nextID &+= 1
     }
 
 
@@ -37,16 +32,16 @@ final class SKServerConnection {
 
     /// configures stateHandler, prepares to recieve data and starts the connection
     func start() {
-        print("Connection \(id) will start")
+        print("Connection will start")
         configure()
-        connection.start(queue: .main)
+        connection.start(queue: queue)
     }
 
     func sendData(_ data: Data) {
-        connection.send(content: data, completion: .contentProcessed({ [weak self, id] error in
+        connection.send(content: data, completion: .contentProcessed({ [weak self] error in
             guard let error
             else {
-                print("Connection \(id) did send, data: \(data as NSData)" )
+                print("Connection did send, data: \(data as NSData)" )
                 return
             }
 
@@ -55,8 +50,8 @@ final class SKServerConnection {
     }
 
     func stop() {
-        print("Connection \(id) will stop")
-        // TODO: maybe send some kind of error message to client? 
+        print("Connection will stop")
+        // TODO: maybe send some kind of error message to server?
         stop(error: nil)
     }
 
@@ -68,7 +63,7 @@ final class SKServerConnection {
     private func stateDidChange(to state: NWConnection.State) {
         switch state {
         case .ready:
-            print("Connection \(id) ready")
+            print("Connection ready")
         case .failed(let error), .waiting(let error):
             connectionDidFail(error: error)
         default:
@@ -81,12 +76,11 @@ final class SKServerConnection {
         connection.receive(
             minimumIncompleteLength: 1,
             maximumLength: MTU
-        ) { [weak self, id] data, _, isComplete, error in
+        ) { [weak self] data, _, isComplete, error in
 
             if let data, !data.isEmpty {
                 let message = String(data: data, encoding: .utf8)
-                print("Connection \(id) did receive, data: \(data as NSData), string: \(message ?? "-")")
-                self?.sendData(data)
+                print("Connection did receive, data: \(data as NSData), string: \(message ?? "-")")
             }
 
             if isComplete {
@@ -100,12 +94,12 @@ final class SKServerConnection {
     }
 
     private func connectionDidFail(error: Error) {
-        print("Connection \(id) did fail, error: \(error)")
+        print("Connection did fail, error: \(error)")
         stop(error: error)
     }
 
     private func connectionDidEnd() {
-        print("Connection \(id) did end")
+        print("Connection did end")
         stop(error: nil)
     }
 
